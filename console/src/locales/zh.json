@@ -37,6 +37,7 @@
     "tools": "工具",
     "mcp": "MCP",
     "agentConfig": "运行配置",
+    "sandboxConfig": "沙箱配置",
     "settings": "设置",
     "models": "模型",
     "environments": "环境变量",
@@ -649,5 +650,27 @@
         "TOOL_CMD_DANGEROUS_MV": "检测可能意外移动或覆盖文件的 mv 命令"
       }
     }
+  },
+  "sandboxConfig": {
+    "title": "沙箱配置",
+    "enabled": "启用沙箱",
+    "enabledTooltip": "启用或禁用沙箱功能",
+    "type": "沙箱类型",
+    "typeTooltip": "选择沙箱类型",
+    "typeBase": "基础沙箱",
+    "typeFilesystem": "文件系统沙箱",
+    "timeout": "超时时间",
+    "timeoutTooltip": "沙箱操作超时时间（秒）",
+    "seconds": "秒",
+    "maxMemory": "最大内存",
+    "maxMemoryTooltip": "沙箱最大内存限制（MB）",
+    "mb": "MB",
+    "maxCpu": "最大CPU",
+    "maxCpuTooltip": "沙箱最大CPU限制（0.1-1.0）",
+    "leaveEmpty": "留空表示无限制",
+    "loadError": "加载沙箱配置失败",
+    "saveSuccess": "沙箱配置保存成功",
+    "saveError": "沙箱配置保存失败",
+    "serviceStarted": "沙箱服务已启动"
   }
 }

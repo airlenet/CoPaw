@@ -30,14 +30,18 @@ from .skills_manager import (
 from .tools import (
     browser_use,
     desktop_screenshot,
-    edit_file,
-    execute_shell_command,
     get_current_time,
-    get_token_usage,
-    read_file,
     send_file_to_user,
-    write_file,
+    get_token_usage,
     create_memory_search_tool,
+)
+from .tools.runtime_sandboxed_tools import (
+    execute_shell_command,
+    run_python_code_sandboxed,
+    read_file,
+    write_file,
+    edit_file,
+    append_file,
 )
 from .utils import process_file_and_media_blocks_in_message
 from ..agents.memory import MemoryManager
@@ -277,7 +281,7 @@ class CoPawAgent(ToolGuardMixin, ReActAgent):
             logger.debug("Registered memory_search tool")
 
     def _register_hooks(self) -> None:
-        """Register pre-reasoning and pre-acting hooks."""
+        """Register pre-reasoning hooks for bootstrap and memory compaction."""
         # Bootstrap hook - checks BOOTSTRAP.md on first interaction
         config = load_config()
         bootstrap_hook = BootstrapHook(
@@ -494,6 +498,7 @@ class CoPawAgent(ToolGuardMixin, ReActAgent):
             return rebuilt_client
         except Exception:  # pylint: disable=broad-except
             return None
+
 
     async def reply(
         self,

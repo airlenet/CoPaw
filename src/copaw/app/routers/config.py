@@ -29,6 +29,7 @@ from ...config.config import (
     QQConfig,
     TelegramConfig,
     VoiceChannelConfig,
+    SandboxConfig
 )
 
 from .schemas_config import HeartbeatBody
@@ -307,3 +308,53 @@ async def get_builtin_rules() -> List[ToolGuardRuleConfig]:
         )
         for r in rules
     ]
+
+
+@router.get(
+    "/sandbox",
+    response_model=SandboxConfig,
+    summary="Get sandbox config",
+    description="Return current sandbox config",
+)
+async def get_sandbox_config() -> SandboxConfig:
+    """Return current sandbox config."""
+    config = load_config()
+    return config.sandbox
+
+
+@router.put(
+    "/sandbox",
+    response_model=SandboxConfig,
+    summary="Update sandbox config",
+    description="Update sandbox configuration",
+)
+async def put_sandbox_config(
+        body: SandboxConfig = Body(...),
+) -> SandboxConfig:
+    """Update sandbox config."""
+    config = load_config()
+    config.sandbox = body
+    save_config(config)
+    return body
+
+
+@router.post(
+    "/sandbox/start",
+    summary="Start sandbox service",
+    description="Start sandbox service by executing a command",
+)
+async def start_sandbox_service(
+        command: str = Body(..., description="Command to execute"),
+) -> dict:
+    """Start sandbox service by executing a command."""
+    try:
+        # 导入沙箱工具
+        from copaw.agents.tools.runtime_sandboxed_tools import execute_shell_command
+
+        # 执行命令
+        result = await execute_shell_command(command=command, timeout=10)
+
+        # 返回结果
+        return result.model_dump()
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))

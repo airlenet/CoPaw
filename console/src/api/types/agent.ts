@@ -14,3 +14,23 @@ export interface AgentsRunningConfig {
   enable_tool_result_compact: boolean;
   tool_result_compact_keep_n: number;
 }
+
+export interface SandboxConfig {
+  enabled: boolean;
+  type: string;
+  timeout: number;
+  max_memory: number | null;
+  max_cpu: number | null;
+}
+
+export interface ExecuteShellCommandRequest {
+  command: string;
+  timeout?: number;
+}
+
+export interface ExecuteShellCommandResponse {
+  content: Array<{
+    type: string;
+    text: string;
+  }>;
+}

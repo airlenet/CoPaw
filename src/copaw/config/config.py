@@ -498,6 +498,31 @@ class SecurityConfig(BaseModel):
     tool_guard: ToolGuardConfig = Field(default_factory=ToolGuardConfig)
 
 
+class SandboxConfig(BaseModel):
+    """Sandbox configuration."""
+
+    enabled: bool = Field(
+        default=True,
+        description="Whether sandbox is enabled"
+    )
+    type: Literal["base", "filesystem"] = Field(
+        default="base",
+        description="Sandbox type: base or filesystem"
+    )
+    timeout: int = Field(
+        default=60,
+        description="Sandbox operation timeout in seconds"
+    )
+    max_memory: Optional[int] = Field(
+        default=None,
+        description="Maximum memory limit in MB (None for no limit)"
+    )
+    max_cpu: Optional[float] = Field(
+        default=None,
+        description="Maximum CPU limit (0.1 to 1.0, None for no limit)"
+    )
+
+
 class Config(BaseModel):
     """Root config (config.json)."""
 
@@ -506,6 +531,7 @@ class Config(BaseModel):
     tools: ToolsConfig = Field(default_factory=ToolsConfig)
     last_api: LastApiConfig = LastApiConfig()
     agents: AgentsConfig = Field(default_factory=AgentsConfig)
+    sandbox: SandboxConfig = Field(default_factory=SandboxConfig)
     last_dispatch: Optional[LastDispatchConfig] = None
     security: SecurityConfig = Field(default_factory=SecurityConfig)
     show_tool_details: bool = True

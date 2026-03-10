@@ -15,6 +15,7 @@ import SkillsPage from "../../pages/Agent/Skills";
 import ToolsPage from "../../pages/Agent/Tools";
 import WorkspacePage from "../../pages/Agent/Workspace";
 import MCPPage from "../../pages/Agent/MCP";
+import SandboxConfigPage from "../../pages/Agent/SandboxConfig";
 import ModelsPage from "../../pages/Settings/Models";
 import EnvironmentsPage from "../../pages/Settings/Environments";
 import SecurityPage from "../../pages/Settings/Security";
@@ -36,8 +37,9 @@ const pathToKey: Record<string, string> = {
   "/models": "models",
   "/environments": "environments",
   "/agent-config": "agent-config",
-  "/security": "security",
-  "/token-usage": "token-usage",
+  "/sandbox-config": "sandbox-config",
+    "/security": "security",
+    "/token-usage": "token-usage",
 };
 
 export default function MainLayout() {
@@ -82,6 +84,7 @@ export default function MainLayout() {
                 <Route path="/models" element={<ModelsPage />} />
                 <Route path="/environments" element={<EnvironmentsPage />} />
                 <Route path="/agent-config" element={<AgentConfigPage />} />
+                <Route path="/sandbox-config" element={<SandboxConfigPage />} />
                 <Route path="/security" element={<SecurityPage />} />
                 <Route path="/token-usage" element={<TokenUsagePage />} />
               </Routes>

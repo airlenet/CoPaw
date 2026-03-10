@@ -37,6 +37,7 @@
     "tools": "Tools",
     "mcp": "MCP",
     "agentConfig": "Configuration",
+    "sandboxConfig": "Sandbox Config",
     "settings": "Settings",
     "models": "Models",
     "environments": "Environments",
@@ -649,5 +650,27 @@
         "TOOL_CMD_DANGEROUS_MV": "Detects 'mv' command that may move or overwrite files unexpectedly"
       }
     }
+  },
+  "sandboxConfig": {
+    "title": "Sandbox Config",
+    "enabled": "Enable Sandbox",
+    "enabledTooltip": "Enable or disable sandbox functionality",
+    "type": "Sandbox Type",
+    "typeTooltip": "Select sandbox type",
+    "typeBase": "Base Sandbox",
+    "typeFilesystem": "Filesystem Sandbox",
+    "timeout": "Timeout",
+    "timeoutTooltip": "Sandbox operation timeout (seconds)",
+    "seconds": "seconds",
+    "maxMemory": "Max Memory",
+    "maxMemoryTooltip": "Sandbox max memory limit (MB)",
+    "mb": "MB",
+    "maxCpu": "Max CPU",
+    "maxCpuTooltip": "Sandbox max CPU limit (0.1-1.0)",
+    "leaveEmpty": "Leave empty for no limit",
+    "loadError": "Failed to load sandbox config",
+    "saveSuccess": "Sandbox config saved successfully",
+    "saveError": "Failed to save sandbox config",
+    "serviceStarted": "Sandbox service started"
   }
 }

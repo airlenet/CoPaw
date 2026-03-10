@@ -64,6 +64,7 @@ const KEY_TO_PATH: Record<string, string> = {
   models: "/models",
   environments: "/environments",
   "agent-config": "/agent-config",
+  "sandbox-config": "/sandbox-config",
   security: "/security",
   "token-usage": "/token-usage",
 };
@@ -329,6 +330,11 @@ export default function Sidebar({ selectedKey }: SidebarProps) {
           key: "agent-config",
           label: t("nav.agentConfig"),
           icon: <Settings size={16} />,
+        },
+        {
+          key: "sandbox-config",
+          label: t("nav.sandboxConfig"),
+          icon: <Box size={16} />,
         },
       ],
     },

@@ -1,5 +1,5 @@
 import { request } from "../request";
-import type { AgentRequest, AgentsRunningConfig } from "../types";
+import type { AgentRequest, AgentsRunningConfig, SandboxConfig } from "../types";
 
 // Agent API
 export const agentApi = {
@@ -33,6 +33,20 @@ export const agentApi = {
       method: "PUT",
       body: JSON.stringify(config),
     }),
+
+    getConfig: () => request<SandboxConfig>('/config/sandbox'),
+
+    updateConfig: (config: { sandbox: SandboxConfig }) =>
+        request<SandboxConfig>('/config/sandbox', {
+            method: 'PUT',
+            body: JSON.stringify(config.sandbox),
+        }),
+
+    execute_shell_command: (command: string) =>
+        request<{ content: Array<{ type: string; text: string }> }>('/config/sandbox/start', {
+            method: 'POST',
+            body: JSON.stringify({ command }),
+        }),
 
   getAgentLanguage: () => request<{ language: string }>("/agent/language"),
 
